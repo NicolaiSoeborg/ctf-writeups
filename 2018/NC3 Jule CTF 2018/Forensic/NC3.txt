@@ -1,0 +1,20 @@
+I ran 'stegcracker.sh' using the rockyou wordlist and got a result in seconds:
+
+$ stegcracker.sh NC3.jpg /wordlists/rockyou.txt
+> Successfully cracked file with password: password1
+> Your file has been written to: NC3.jpg.out
+
+Looking at 'NC3.jpg.out' it contains a lot of base64 encoded content:
+$ base64 -d NC3.jpg.out > NC3.b64decoded
+
+Now it contains some morse encoded stuff.
+Decoding this is easy, but then you get something with only 3 symbols: `.!?`
+
+This could look like some exotic language (think Brainfuck).
+Looking at some languages this seems to be a modified "Ook".
+Decrypting gives:
+  Ri tobrh tzoush: BQ3{goo_gboyysf_jw_goaas_gdfcu}
+
+It's not ROT13, but using 'CyberChef' its easy to find that its ROT-12:
+  Du fandt flaget: NC3{saa_snakker_vi_samme_sprog}
+

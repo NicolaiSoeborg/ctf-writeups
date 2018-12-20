@@ -1,0 +1,32 @@
+Find bitcoin addresses:
+
+$ strings wallet.dat | grep name
+
+> name"3HYJ8JdBtjkzLJ7ZqWAdgxXd82U49sAMsp!
+> name"39oZZNN6vM62Pj4u6SxHEHstSww6JHVZ2h
+> name"368xVUfQhUbSDFKD7rwgcXR9KerifeJhmp
+> name"3HYJ8JdBtjkzLJ7ZqWAdgxXd82U49sAMsp!
+> name"39oZZNN6vM62Pj4u6SxHEHstSww6JHVZ2h
+
+Lets follow the 3HYJ8JdBtjkzLJ7ZqWAdgxXd82U49sAMsp address (sent):
+ => 1Nm9tCeFspmfRofKJDJoRCwTNxs9Y1JfcK
+    => 1MgqTXwLyXEpc9qdjQZFtY8LWLaFNDgHha
+       => 16sCPFRULjUmnVaRWJZ5KhN9F7RLeMtzAp
+       => 1HhRUqPx8EBhBvpA5R32CjgA8tGxi6QT3i
+          => "Unable to decode output address"
+       => 12SvvcpPhCgpQek6z5mpzWmohQiKMyGNUd
+    => ...
+
+The "output address" (transaction: ce4c5dfe1f0ec95d7ed5030bb9954f8950455b1fdd0849471c76ac09502b2b1a) seems interesting.
+
+Output Scripts:
+  DUP HASH160 PUSHDATA(20)[263cc2e3e803a159b35b9de285b5c8168cd5ea29] EQUALVERIFY CHECKSIG
+  RETURN PUSHDATA(57)[455720466c61673a20546b4d7a6532357063334e6c626e4e665347463359576c705832526c6347397a61585266595752795a584e7a5a58303d]
+  DUP HASH160 PUSHDATA(20)[72a7eb76b7a52f3ed9cb70c0fe7cbc980e1e00fa] EQUALVERIFY CHECKSIG
+
+The PUSHDATA is:
+  EW Flag: TkMze25pc3NlbnNfSGF3YWlpX2RlcG9zaXRfYWRyZXNzZX0=
+
+$ echo 'TkMze25pc3NlbnNfSGF3YWlpX2RlcG9zaXRfYWRyZXNzZX0=' | base64 -d
+> NC3{nissens_Hawaii_deposit_adresse}
+
