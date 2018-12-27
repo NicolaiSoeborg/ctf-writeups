@@ -22,10 +22,10 @@ wallet              (350 points -   9 solves): NC3{nissens_Hawaii_deposit_adress
 breach              (500 points -   3 solves): <we didn't solve it>
 
             boot2root
-root                (500 points -  38 solves): <writeup coming soon>
-storenisse          (225 points -  40 solves): <writeup coming soon>
-mellemnisse         (350 points -  24 solves): <writeup coming soon>
-lillenisse          (275 points -  49 solves): <writeup coming soon>
+root                (500 points -  38 solves): NC3{r00t_dansemus}
+storenisse          (225 points -  40 solves): NC3{godt_fundet_mester__tag_nu_den_store}
+mellemnisse         (350 points -  24 solves): NC3{mellemnisse_fundet_via__rensdyrermitkode0rd}
+lillenisse          (275 points -  49 solves): NC3{web_er_ikke_noget_problem_for_en_nisse__ej_heller_sqli}
 
             Analyse
 nem                 (150 points -   6 solves): nc3{The most merciful thing in the world, I think, is the inability of the human mind to correlate all its contents. We live on a placid island of ignorance in the midst of black seas of infinity, and it was not meant that we should voyage far. H.P. Lovecraft}
