@@ -14,7 +14,7 @@ Indledning          ( 10 points - 426 solves): NC3{saa_simpelt}
 Små Skridt          ( 50 points - 298 solves): NC3{så_er_vi_i_gang}
 nisse.elf           (200 points - 138 solves): <writeup coming soon>
 Fi1eCrypter         (400 points -  66 solves): <writeup coming soon>
-Kan du dekode?      (450 points -  28 solves): <writeup coming soon>
+Kan du dekode?      (450 points -  28 solves): NC3{dekodning_af_kodede_php_bytes}
 
               misc
 breach_nem          (150 points -  59 solves): NC3{nisser_på_linjen__vi_ser_frem_til_writeups}
