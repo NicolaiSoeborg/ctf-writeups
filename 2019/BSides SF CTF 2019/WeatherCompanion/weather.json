@@ -1,0 +1,16 @@
+{
+  "current_weather": {
+    "temperature": "48F",
+    "precipitation": "0%",
+    "humidity": "63%",
+    "wind": "13mph"
+  },
+  "display_location": {
+    "full": "San Francisco, CA",
+    "city": "San Francisco",
+    "state": "CA",
+    "state_name": "California",
+    "country": "US"
+  },
+  "future_forecast": ["51", "52", "53", "57", "55", "51", "55"]
+}

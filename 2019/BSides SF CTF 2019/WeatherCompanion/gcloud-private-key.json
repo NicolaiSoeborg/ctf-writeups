@@ -1,0 +1,12 @@
+{
+    "type": "service_account",
+    "project_id": "bsides-sf-ctf-2019",
+    "private_key_id": "6dd7fc48a8b1d49edf7f03f74bc47713bec7d989",
+    "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCbNaJX7qZ2Sec4\n5W4ir+yYXJ3IwjZ8fwyw0PZSoiTb/iJqTcKk/ltjP61TrJHB5MqKm6Vz/WGw7GSm\nnd21xMFqclwuG8N7f+zhIK0XuvRBrS+cMEhw0RbHNUbcO3ZaghKffaLThzPY4x2r\nHh/N8lUYi4TB8WAGaAzCJH3pUi9rTG4+ucxO6pMNz3/ENzyOSmihR9Xb5OkMY/Aq\n7NJ7BAwH8oSWRlTllaC8Chl8wDdun6fKWgYYmmcBWXSjropu8f6MR7vMM3F0PEua\nYBz1ZpxVvYc1iiMS0WiNtAa1ZBuWhRenAiTfwOCt4rISfbgYSqCTSoK5tOWS52tM\ntuzt/OVjAgMBAAECggEAC9T230UuI25W1huHXdWTb7n/vUIw7SSyTvhfDsWVkb+5\n1+i9od5SESrVh79sDR/n4NEkt8blH5ulwJ3gPO8W34qARHORX2TNJgxbpad231rY\nekuj+hW2atFA6aEO0K+Bw+7L7twrs6j8pgLR4d1LZ2ebYz2HWHWuI06s2pCNVNyM\nSMn593YgfmzNotaoJ3dHAwKG8PuNRHh0qDqqLnu0574dXkTFkEePcedyzza007Iy\nCoNTUYJxDO7aJbTQPVyqm7mOewh1SYUdHSofcfALlC9eT2nn6+c9qRgGO3AwbC8V\ns9TmMR9+DWfHrUmPN8AKB4YKov/QGUv29svI0d8YwQKBgQDTobsDSI96xm2s+NnE\nPabZ+W76sg/1o1dPU4w4+/0u/RUT+vJoumsvwf5n7KUXVAP8npu6LYouNlHz9+zV\nThTINxyTrrA5VamFhoEpeY8OFboNVltxKj9nFvbS2jw2GLZQLapN0XIYE0axRNJs\nCSyc2LDYVVj0abjzx0CCFc0S+QKBgQC7v7kpSMJmIwl7FpJm/T9oakdvyZNzt3ZU\n+DTRmPXh/WM5c6j9vdzGKq3IlmHV/SSzVUfwQaxF8VzQlAi69fru/DStT8h7CpGd\nLEz8S0qq7ubbs7gODK/ZrwSQhv8doegZGu0ntURfaVL7AnyKGJVq2SLheVhMhJeZ\nm94mGME2OwKBgFXFSWcGRGhM/WxKGvAG0JWtGwZtnjw+rAcRZFZAApfFqIJFhXNe\ngkyDwhjadvpiaY87tP+ar1MVXteS1qCImbGfbGyKMw+5oQ/luHlXs9vQgGwhYMQX\njES6sOQ54IdIMrOCHnCVfzk0rsTvkJyKh1M2G05CIOBF7NiYG5PdRBT5AoGABEwT\nFNrReDz9DpApsanCNcWY9PoMIe3lC3TS4Kk7l3yRNNNs3sHlt7NqXtjyTE+K83/U\nMa+PHdq0YSHCQWU35RhorD7TO922D37gFDY080ychBLM96VasQTMefJdDHSUN17i\nZrJDaluixpP7/b0qTlPB9J8uYjH2tlFW+FBAu9kCgYBch8VvyBzlGay5r07joRju\ncdnVfrGAUdZRLxA5hrIaKvKFy28CaaKV/lZNI9NmdZntj6aIQ0rzUWidOQsmj2o4\n7VcArl5UNurhx4uhg2GClcUIHY5YdExHfEujBu6uMQdZjBpX87uoaggC7jwJanQC\nlApTPc3478g/mho9S5eDMw==\n-----END PRIVATE KEY-----\n",
+    "client_email": "weather-companion-service-acco@bsides-sf-ctf-2019.iam.gserviceaccount.com",
+    "client_id": "116037946827001874660",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/weather-companion-service-acco%40bsides-sf-ctf-2019.iam.gserviceaccount.com"
+}
