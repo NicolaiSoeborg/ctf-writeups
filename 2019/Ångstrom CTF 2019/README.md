@@ -33,7 +33,7 @@ No Sequels              ( 50 points -  311 solves):
 Classy Cipher           ( 20 points - 708 solves): actf{so_charming}
 Really Secure Algorithm ( 30 points - 541 solves): actf{really_securent_algorithm}
 Half and Half           ( 50 points - 339 solves): actf{coffee_tastes_good}
-Runes                   ( 70 points - 234 solves): 
+Runes                   ( 70 points - 234 solves): actf{crypto_lives}
 Paint                   ( 75 points - 100 solves): actf{powers_of_two_are_not_two_powerful}
 Powerball               (200 points -  51 solves): actf{no_more_free_oblivious_transfers}
 ```
