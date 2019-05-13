@@ -1,0 +1,13 @@
+Hint gives domain "military-grade-secrets.dev".
+
+Search transperency logs and find:
+ * now.under.even-more-militarygrade.pw.military-grade-secrets.dev
+ * secret-storage.military-grade-secrets.dev
+
+They both redirect to "forget-me-not.even-more-militarygrade.pw"
+Which isn't online (no A record).
+
+Google and find a cached copy!
+
+ OOO{DAMNATIO_MEMORIAE}
+

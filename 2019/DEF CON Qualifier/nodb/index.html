@@ -1,0 +1,192 @@
+<html>
+  <head>
+  <script src="wasm.js"></script>
+  <style>
+  html, body{margin:0;overflow:hidden;}html{background:black;}li{list-style-type:none;}body{display:flex;align-items:center;justify-content:center;}
+
+/*The sun*/
+.midnightHeart{
+  position: fixed;
+  top: 0;
+  z-index:1;
+  background:orange;
+  margin-top:10px;
+  width:15vmax;
+  height:15vmax;
+  border-radius:100%;
+  background:linear-gradient(to bottom, #FFD800, #FFD800, #F59440, #F59440, #EB6380, #AA12D7, #4e0962, rgba(0,0,0,0) 95%);
+}
+.midnightHeart::after{
+  content:"";
+  position:relative;
+  display:block;
+  width:100%;
+  height:100%;
+  background: repeating-linear-gradient(
+    to top,
+    rgba(0,0,0,1),
+    rgba(0,0,0,1) 3.8%,
+    rgba(0,0,0,0) 4%,
+    rgba(0,0,0,0) 17%
+  );
+  border-radius:100%;
+}
+
+
+/*the cliffs*/
+.midnightCliffs{
+  position:absolute;
+  display:block;
+  width:100%;
+  height:120px;
+  
+  top:calc(16vmax - 100px);
+  z-index:1;
+}
+.midnightCliffs::after{
+  content:"";
+  position:relative;
+  display:block;
+  width:100%;
+  height:100%;
+  background:linear-gradient(to bottom, rgba(0,0,0,0) 20%, rgba(0,0,0,0.4) 70%, rgba(0,0,0,1) 100%),
+    linear-gradient(to left, rgba(0,0,0,0) 80%, rgba(0,0,0,1)),
+    linear-gradient(to right, rgba(0,0,0,0) 80%, rgba(0,0,0,1));
+}
+.cliff1{
+  position:absolute;
+  height:100%;
+  width:100%;
+  background: linear-gradient(-45deg, rgb(40, 170, 220) 2.6vmax, transparent 2.7vmax) 1px 0 / 6.2vw 100%,
+              linear-gradient(60deg, rgb(40, 170, 220) 1.8vmax, transparent 1.9vmax) 0 0 / 6.2vw 100%;
+}
+.cliff2{
+  position:absolute;
+  height:100%;
+  width:100%;
+  background: linear-gradient(25deg, rgb(40, 170, 220) 3vmax, transparent 2.7vmax) -31px 0 / 7.3vw 100%,
+              linear-gradient(-40deg, rgb(40, 170, 220) 2.55vmax, transparent 1.9vmax) -30px 0 / 7.3vw 100%;
+}
+
+/*the grid*/
+.midnightGrid{
+  position:absolute;
+  z-index:-1;
+  top:16vw;
+  width:100%;
+  height:100%;
+  transform-origin:top center;
+  overflow-y:hidden;
+}
+
+.midnightGrid{
+  transform:perspective(55vmin) rotateX(77deg);
+}
+
+.gridInner{
+  animation:animatedGrid 20s linear infinite;
+}
+.midnightGrid::after{
+  content:"";
+  background:linear-gradient(to top, rgba(0,0,0,0) 60%, rgba(0,0,0,1) 90%);
+  display:block;
+  position:relative;
+  height:100%;
+  width:100%;
+  z-index:9;
+}
+.grid-x,.grid-y{
+  width:100vw;
+  height:100vw;
+  position:absolute;
+  bottom:0;
+  left:0;
+  background: repeating-linear-gradient(
+    to top,
+    rgba(194,44,146,0),
+    rgba(194,44,146,0) 2.4vmax,
+    rgba(194,44,146,1) 2.4vmax,
+    rgba(194,44,146,1) 2.56vmax
+  );
+}
+.grid-y{
+  transform:rotate(90deg);
+}
+@keyframes animatedGrid {
+  from {
+   transform:translateY(80vmin)
+  }
+  to {
+   transform:translateY(130vmin)
+  }
+ }
+
+/*the text*/
+.text{
+  position: fixed;
+  z-index:1;
+  top: 0;
+  right: 0;
+  width:30%;
+  height:100%;
+  transform-origin:top center;
+  overflow-y:hidden;
+  font-size: 36px !important;
+  font-weight: bold;
+  font-family: "Lucida Console", Monaco, monospace;
+  color: green;
+}
+input[type=text] {
+  width: 50%;
+  padding: 8px 12px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  background: black;
+}
+input[type=button], input[type=submit], input[type=reset] {
+  background-color: #4CAF50;
+  border: none;
+  color: black;
+  padding: 12px 18px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+  font-size: 18px !important; 
+  font-family: "Lucida Console", Monaco, monospace;
+}
+</style>
+<script>
+  function validateForm() {
+    str = document.forms["myForm"]["password"].value 
+    ptr = allocate(intArrayFromString(str), 'i8', ALLOC_NORMAL);
+    ret = UTF8ToString(_authenticate(ptr));
+    console.log(ret);
+    if (ret == "success") document.getElementsByClassName("text")[0].innerText = "SUCCESS"
+    return false;
+  }
+</script>
+  </head>
+  <body>
+      <div class="midnightHeart"></div>
+
+      <div class="midnightCliffs">
+        <div class="cliff1"></div>
+        <div class="cliff2"></div>
+      </div>
+      
+      <div class="midnightGrid">
+        <div class="gridInner">
+          <div class="grid-x"></div>
+          <div class="grid-y"></div>
+        </div>
+      </div>
+      
+      <div class="text">Welcome to the future! <br> The future of no data breaches...<br>
+        <form name="myForm" action="/" onsubmit="return validateForm()" method="get">
+          Password: <input type="text" name="password">
+          <input type="submit" value="Submit">
+        </form>
+      </div>
+  </body>
+</html>
+
