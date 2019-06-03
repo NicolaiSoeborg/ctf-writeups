@@ -4,7 +4,7 @@ URL: https://www.fbctf.com/
 
 Team: dtuhax
 
-Place: 319 (of 1628)
+Place: 233 (of 1734)
 
 ## Flags
 
