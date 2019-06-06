@@ -1,0 +1,50 @@
+graph TD
+    classDef default fill:#fff,stroke:#111,stroke-width:1px;
+
+    root(Merkle root) --> abcd(abcd)
+    root --> efgh(efgh)
+
+    abcd --> ab(ab)
+    abcd --> cd(cd)
+
+    efgh --> ef(ef)
+    efgh --> gh(gh)
+
+    ab --> a(a)
+    ab --> b(b)
+    cd --> c(c)
+    cd --> d(d)
+    ef --> e(e)
+    ef --> f(f)
+    gh --> g(g)
+    gh --> h(h)
+
+subgraph Leaves
+  subgraph Bit 0
+    a --> A
+    A --> a
+    b --> B
+    B --> b
+  end
+  subgraph Bit 1
+    c --> C
+    C --> c
+    d --> D
+    D --> d
+  end
+  subgraph Bit 2
+    e --> E
+    E --> e
+    f --> F
+    F --> f
+  end
+  subgraph Bit 3
+    g --> G
+    G --> g
+    h --> H
+    H --> h
+  end
+end
+
+classDef revealed fill:yellow;
+class A,b,c,D,e,F,G,h revealed;

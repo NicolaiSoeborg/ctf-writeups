@@ -18,70 +18,17 @@ Well, lets first checkout _Lamport one-time signature scheme_ to sign a single b
 
 In the hash based tree below, our public key is the _Merkle root_ and `rnd0` and `rnd1` are some securely big random values.
 
-```mermaid
-graph TD
-    classDef default fill:#fff,stroke:#111,stroke-width:1px;
-
-    root("Merkle root <br/> Hash(Hash(rnd0) || Hash(rnd1))") --> a(a)
-    root --> b(b)
-
-subgraph Leaves
-    a --> A(rnd0)
-    A --> a("Hash(rnd0)")
-    b --> B(rnd1)
-    B --> b("Hash(rnd1)")
-end
-```
+![mermaid diagram of sign-single-bit.mmd](diagrams/sign-single-bit.png)
 
 Now to sign `bit is 0` we will reveal `rnd0` and `Hash(rnd1)` and everyone can calculate `a = Hash(rnd0)` and verify that `root == Hash(a || Hash(rnd1))`.
 
-But note that revealing any of the leaves will mean that we can reuse the signature, i.e. if anyone knows `rnd1` then signatures for both `bit is 0` and `bit is 1` can be forged.
+But note that revealing any of the leaves will mean that we **can't** reuse the signature, i.e. if anyone knows `rnd1` then signatures for both `bit is 0` and `bit is 1` can be forged.
 
 ## Signing multiple bits
 
 We can extend the tree and sign multiple messages.
 
-```mermaid
-graph TD
-    classDef default fill:#fff,stroke:#111,stroke-width:1px;
-
-    root(Merkle root) --> abcd(abcd)
-    root --> efgh(efgh)
-
-    abcd --> ab(ab)
-    abcd --> cd(cd)
-
-    efgh --> ef(ef)
-    efgh --> gh(gh)
-
-    ab --> a(a)
-    ab --> b(b)
-    cd --> c(c)
-    cd --> d(d)
-    ef --> e(e)
-    ef --> f(f)
-    gh --> g(g)
-    gh --> h(h)
-
-subgraph Leaves
-    a --> A
-    A --> a
-    b --> B
-    B --> b
-    c --> C
-    C --> c
-    d --> D
-    D --> d
-    e --> E
-    E --> e
-    f --> F
-    F --> f
-    g --> G
-    G --> g
-    h --> H
-    H --> h
-end
-```
+![mermaid diagram of sign-multiple-bits.mmd](diagrams/sign-multiple-bits.png)
 
 In the above example `a = Hash(A)`, `b = Hash(B)`, ..., `ab = Hash(a || b) = Hash(Hash(A) || Hash(B))`, etc.
 
@@ -90,58 +37,7 @@ Again, revealing `A` means `bit is 0` and revealing `B` means `bit is 1`.
 
 To sign `1001` we will need to reveal all the yellow below:
 
-```mermaid
-graph TD
-    classDef default fill:#fff,stroke:#111,stroke-width:1px;
-
-    root(Merkle root) --> abcd(abcd)
-    root --> efgh(efgh)
-
-    abcd --> ab(ab)
-    abcd --> cd(cd)
-
-    efgh --> ef(ef)
-    efgh --> gh(gh)
-
-    ab --> a(a)
-    ab --> b(b)
-    cd --> c(c)
-    cd --> d(d)
-    ef --> e(e)
-    ef --> f(f)
-    gh --> g(g)
-    gh --> h(h)
-
-subgraph Leaves
-  subgraph Bit 0
-    a --> A
-    A --> a
-    b --> B
-    B --> b
-  end
-  subgraph Bit 1
-    c --> C
-    C --> c
-    d --> D
-    D --> d
-  end
-  subgraph Bit 2
-    e --> E
-    E --> e
-    f --> F
-    F --> f
-  end
-  subgraph Bit 3
-    g --> G
-    G --> g
-    h --> H
-    H --> h
-  end
-end
-
-    classDef revealed fill:yellow;
-    class a,B,C,d,E,f,g,H revealed;
-```
+![mermaid diagram of sign-1001.mmd](diagrams/sign-1001.png)
 
 This is all fine, and we can extend the signature scheme to allow for signing multiple messages (in the python code attached, this is the `other` variable).
 
@@ -149,62 +45,14 @@ But when checking `signatures.csv` we found that one of the addresses (`9bca65c9
 
 So lets see what happens in the above tree if we sign e.g. `0110`:
 
-```mermaid
-graph TD
-    classDef default fill:#fff,stroke:#111,stroke-width:1px;
+![mermaid diagram of sign-0110.mmd](diagrams/sign-0110.png)
 
-    root(Merkle root) --> abcd(abcd)
-    root --> efgh(efgh)
+Now we can combine the two signatures and will get to know `A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, i.e. the whole private key!
 
-    abcd --> ab(ab)
-    abcd --> cd(cd)
+## Solving the challenge
 
-    efgh --> ef(ef)
-    efgh --> gh(gh)
-
-    ab --> a(a)
-    ab --> b(b)
-    cd --> c(c)
-    cd --> d(d)
-    ef --> e(e)
-    ef --> f(f)
-    gh --> g(g)
-    gh --> h(h)
-
-subgraph Leaves
-  subgraph Bit 0
-    a --> A
-    A --> a
-    b --> B
-    B --> b
-  end
-  subgraph Bit 1
-    c --> C
-    C --> c
-    d --> D
-    D --> d
-  end
-  subgraph Bit 2
-    e --> E
-    E --> e
-    f --> F
-    F --> f
-  end
-  subgraph Bit 3
-    g --> G
-    G --> g
-    h --> H
-    H --> h
-  end
-end
-  subgraph a
-  end
-
-    classDef revealed fill:yellow;
-    class A,b,c,D,e,F,G,h revealed;
-```
-
-Now we can combine the two signatures and will get to know `A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, i.e. the private key!
+In the *postquantumsig* task we could use the same principle to extract the whole "512 hashes" private key
+from the 10 messages `9bca65c9376209ede04b5df3b02cb832f8997ff978069d171dc9cbfca657f91a` signed (all with merkle root hash `878c9f44e5284cc3b0bd9ade03e5ad023f323f830b2588756ec5ed84ee124fb4`). We might have been unlucky that some of the private key secrets wouldn't have been revealed (in which case we couldn't sign the corresponding bits), but in this case the whole private key was leaked.
 
 We used this to create a signature for:
 `9bca65c9376209ede04b5df3b02cb832f8997ff978069d171dc9cbfca657f91a sent 13.37 zuccoins to aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa`

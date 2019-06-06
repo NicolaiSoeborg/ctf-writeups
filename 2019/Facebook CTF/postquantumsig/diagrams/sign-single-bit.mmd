@@ -1,0 +1,12 @@
+graph TD
+    classDef default fill:#fff,stroke:#111,stroke-width:1px;
+
+    root("Merkle root <br/> Hash(Hash(rnd0) || Hash(rnd1))") --> a(a)
+    root --> b(b)
+
+subgraph Leaves
+    a --> A(rnd0)
+    A --> a("Hash(rnd0)")
+    b --> B(rnd1)
+    B --> b("Hash(rnd1)")
+end
