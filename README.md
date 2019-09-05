@@ -25,3 +25,5 @@ Mostly as part of Cyberlandsholdet (2017, 2018) or dtuhax (2019-)
   * [ångstromCTF 2019](2019/Ångstrom%20CTF%202019/).  (149 of 1570)
   * [DEF CON CTF Qualifier 2019](2019/DEF%20CON%20Qualifier/).  (99 of 1262)
   * [Facebook CTF](2019/Facebook%20CTF/).  (233 of 1734)
+  * [TokyoWesterns CTF 5th 2019](2019/TokyoWesterns%20CTF%205th%202019/).  (173 of 1005)
+

