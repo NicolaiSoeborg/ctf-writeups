@@ -1,0 +1,9 @@
+
+```
+$ guestmount --ro -a ./WindowsXP.img -i /tmp/mp/
+$ cd /tmp/mp/RECYCLER/S-1-5-21-2703544341-426381124-2258451595-500/
+$ grep -r 'gigem{'
+Dc57.txt:oigigem{Ch4Nn3l_1Nn3R_3l10t_N3$$}khsutrghsiserg
+```
+
+gigem{Ch4Nn3l_1Nn3R_3l10t_N3$$}

@@ -1,0 +1,22 @@
+# just-bc
+
+```
+$ file just-bc.bin
+just-bc.bin: LLVM IR bitcode
+```
+
+Google "LLVM IR bitcode" find `llvm-dis`
+
+```
+$ llvm-dis just-bc.bin
+# produces just-bc.bin.ll
+```
+
+Grep for "Password" and look up a few lines: "lmaoniceonebuddypalfriendolino"
+
+```
+$ nc challenges.tamuctf.com 4932
+Password: lmaoniceonebuddypalfriendolino
+gigem{hmm_yes_interesting_very_interesting}
+Password: ^C
+```
