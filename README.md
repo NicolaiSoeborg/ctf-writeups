@@ -28,3 +28,6 @@ Mostly as part of Cyberlandsholdet (2017, 2018) or dtuhax (2019-)
   * [TokyoWesterns CTF 5th 2019](2019/TokyoWesterns%20CTF%205th%202019/).  (173 of 1005)
   * [CSAW CTF'19 Quals](2019/CSAW%202019/).  (127 of 1301)
   * [Syskron Security CTF](2019/Syskron%20Security%20CTF).  (2 of 584)
+
+* 2020
+  * [TAMUctf 2020](2020/TAMUctf%202020/).  (108 of 661)
