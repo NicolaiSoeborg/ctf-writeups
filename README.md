@@ -31,3 +31,5 @@ Mostly as part of Cyberlandsholdet (2017, 2018) or dtuhax (2019-)
 
 * 2020
   * [TAMUctf 2020](2020/TAMUctf%202020/).  (108 of 661)
+  * [Midnightsun CTF 2020](2020/Midnightsun%20CTF%202020/).  (42 of 932)
+

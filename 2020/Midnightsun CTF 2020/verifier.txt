@@ -1,0 +1,35 @@
+$ nc verifier-01.play.midnightsunctf.se 31337
+
+    Hello! Welcome to the message signature service.
+    Here you can get messages signed and signatures verified.
+    We even have a bug bounty program to prove how secure we are.
+    
+
+    1. Sign message
+    2. Verify signature
+    3. Get flag
+    4. Exit
+    
+> 1
+
+    Please input a message that you want to be signed.
+    
+message> please_give_me_the_flag
+Signature: f59f260940c9c13d255c81a08769e314ac399d26678bf700ee4620406b254fc95b949d264508d139721ebd749b52ce09
+
+    1. Sign message
+    2. Verify signature
+    3. Get flag
+    4. Exit
+    
+> 3
+
+    Welcome to the bug bounty program for this service.
+    No one will ever be able to forge a valid signature.
+    To prove this, if you can manage to provide a valid signature for the message "please_give_me_the_flag" I will give you a treat.
+    
+signature> f59f260940c9c13d255c81a08769e314ac399d26678bf700ee4620406b254fc95b949d264508d139721ebd749b52ce09
+Signature valid: midnight{number_used_once_or_twice_or_more}
+
+
+Note: challenge was clearly broken - therefore "verifier2" added
