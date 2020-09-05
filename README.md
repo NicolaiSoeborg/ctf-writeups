@@ -4,7 +4,7 @@
 # CTF Writeups
 
 CTF writeups for the CTF's I've participated in.
-Mostly as part of Cyberlandsholdet (2017, 2018) or dtuhax (2019-)
+Mostly as part of Cyberlandsholdet (2017, 2018), dtuhax (2019-) or kalmarunionen (2020-)
 
 * 2017
   * Pwn2Win CTF 2017.  (10 of 207)
@@ -33,4 +33,5 @@ Mostly as part of Cyberlandsholdet (2017, 2018) or dtuhax (2019-)
   * [TAMUctf 2020](2020/TAMUctf%202020/).  (108 of 661)
   * [Midnightsun CTF 2020](2020/Midnightsun%20CTF%202020/).  (42 of 932)
   * [Cyberlandsholdet 2020](2020/Cyberlandsholdet%202020/).
+  * [Google CTF 2020](2020/Google%20CTF%202020/).
 
