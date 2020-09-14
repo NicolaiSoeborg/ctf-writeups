@@ -1,0 +1,23 @@
+curl 'http://crypto.chal.csaw.io:5005/dash/Rubin?hmac=1337' -H 'Cookie: session=eyJzZXJ2ZXJfaG1hYyI6IjEzMzcifQ.X143uQ.ictYi0guIJ38kzc3B98Iv6MtmGc'
+
+
+curl 'http://crypto.chal.csaw.io:5005/dash/Jere?hmac=1337' -H 'Cookie: session=eyJzZXJ2ZXJfaG1hYyI6IjEzMzcifQ.X143uQ.ictYi0guIJ38kzc3B98Iv6MtmGc' >> /tmp/wat.html
+curl 'http://crypto.chal.csaw.io:5005/dash/Lakisha?hmac=1337' -H 'Cookie: session=eyJzZXJ2ZXJfaG1hYyI6IjEzMzcifQ.X143uQ.ictYi0guIJ38kzc3B98Iv6MtmGc' >> /tmp/wat.html
+curl 'http://crypto.chal.csaw.io:5005/dash/Loraine?hmac=1337' -H 'Cookie: session=eyJzZXJ2ZXJfaG1hYyI6IjEzMzcifQ.X143uQ.ictYi0guIJ38kzc3B98Iv6MtmGc' >> /tmp/wat.html
+curl 'http://crypto.chal.csaw.io:5005/dash/Ingrid?hmac=1337' -H 'Cookie: session=eyJzZXJ2ZXJfaG1hYyI6IjEzMzcifQ.X143uQ.ictYi0guIJ38kzc3B98Iv6MtmGc' >> /tmp/wat.html
+curl 'http://crypto.chal.csaw.io:5005/dash/Orlando?hmac=1337' -H 'Cookie: session=eyJzZXJ2ZXJfaG1hYyI6IjEzMzcifQ.X143uQ.ictYi0guIJ38kzc3B98Iv6MtmGc' >> /tmp/wat.html
+curl 'http://crypto.chal.csaw.io:5005/dash/Berry?hmac=1337' -H 'Cookie: session=eyJzZXJ2ZXJfaG1hYyI6IjEzMzcifQ.X143uQ.ictYi0guIJ38kzc3B98Iv6MtmGc' >> /tmp/wat.html
+curl 'http://crypto.chal.csaw.io:5005/dash/Alton?hmac=1337' -H 'Cookie: session=eyJzZXJ2ZXJfaG1hYyI6IjEzMzcifQ.X143uQ.ictYi0guIJ38kzc3B98Iv6MtmGc' >> /tmp/wat.html
+curl 'http://crypto.chal.csaw.io:5005/dash/Bryan?hmac=1337' -H 'Cookie: session=eyJzZXJ2ZXJfaG1hYyI6IjEzMzcifQ.X143uQ.ictYi0guIJ38kzc3B98Iv6MtmGc' >> /tmp/wat.html
+curl 'http://crypto.chal.csaw.io:5005/dash/Kathryn?hmac=1337' -H 'Cookie: session=eyJzZXJ2ZXJfaG1hYyI6IjEzMzcifQ.X143uQ.ictYi0guIJ38kzc3B98Iv6MtmGc' >> /tmp/wat.html
+curl 'http://crypto.chal.csaw.io:5005/dash/Brigitte?hmac=1337' -H 'Cookie: session=eyJzZXJ2ZXJfaG1hYyI6IjEzMzcifQ.X143uQ.ictYi0guIJ38kzc3B98Iv6MtmGc' >> /tmp/wat.html
+curl 'http://crypto.chal.csaw.io:5005/dash/Dannie?hmac=1337' -H 'Cookie: session=eyJzZXJ2ZXJfaG1hYyI6IjEzMzcifQ.X143uQ.ictYi0guIJ38kzc3B98Iv6MtmGc' >> /tmp/wat.html
+curl 'http://crypto.chal.csaw.io:5005/dash/Jo?hmac=1337' -H 'Cookie: session=eyJzZXJ2ZXJfaG1hYyI6IjEzMzcifQ.X143uQ.ictYi0guIJ38kzc3B98Iv6MtmGc' >> /tmp/wat.html
+curl 'http://crypto.chal.csaw.io:5005/dash/Leslie?hmac=1337' -H 'Cookie: session=eyJzZXJ2ZXJfaG1hYyI6IjEzMzcifQ.X143uQ.ictYi0guIJ38kzc3B98Iv6MtmGc' >> /tmp/wat.html
+curl 'http://crypto.chal.csaw.io:5005/dash/Adrian?hmac=1337' -H 'Cookie: session=eyJzZXJ2ZXJfaG1hYyI6IjEzMzcifQ.X143uQ.ictYi0guIJ38kzc3B98Iv6MtmGc' >> /tmp/wat.html
+curl 'http://crypto.chal.csaw.io:5005/dash/Autumn?hmac=1337' -H 'Cookie: session=eyJzZXJ2ZXJfaG1hYyI6IjEzMzcifQ.X143uQ.ictYi0guIJ38kzc3B98Iv6MtmGc' >> /tmp/wat.html
+curl 'http://crypto.chal.csaw.io:5005/dash/Kellie?hmac=1337' -H 'Cookie: session=eyJzZXJ2ZXJfaG1hYyI6IjEzMzcifQ.X143uQ.ictYi0guIJ38kzc3B98Iv6MtmGc' >> /tmp/wat.html
+curl 'http://crypto.chal.csaw.io:5005/dash/Alphonso?hmac=1337' -H 'Cookie: session=eyJzZXJ2ZXJfaG1hYyI6IjEzMzcifQ.X143uQ.ictYi0guIJ38kzc3B98Iv6MtmGc' >> /tmp/wat.html
+curl 'http://crypto.chal.csaw.io:5005/dash/Joel?hmac=1337' -H 'Cookie: session=eyJzZXJ2ZXJfaG1hYyI6IjEzMzcifQ.X143uQ.ictYi0guIJ38kzc3B98Iv6MtmGc' >> /tmp/wat.html
+curl 'http://crypto.chal.csaw.io:5005/dash/Alissa?hmac=1337' -H 'Cookie: session=eyJzZXJ2ZXJfaG1hYyI6IjEzMzcifQ.X143uQ.ictYi0guIJ38kzc3B98Iv6MtmGc' >> /tmp/wat.html
+curl 'http://crypto.chal.csaw.io:5005/dash/Rubin?hmac=1337' -H 'Cookie: session=eyJzZXJ2ZXJfaG1hYyI6IjEzMzcifQ.X143uQ.ictYi0guIJ38kzc3B98Iv6MtmGc' >> /tmp/wat.html
