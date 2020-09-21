@@ -4,7 +4,7 @@
 # CTF Writeups
 
 CTF writeups for the CTF's I've participated in.
-Mostly as part of Cyberlandsholdet (2017, 2018), dtuhax (2019-) or kalmarunionen (2020-)
+Mostly as part of Cyberlandsholdet (2017, 2018), dtuhax (2019-) or kalmarunionen (2020-).
 
 * 2017
   * Pwn2Win CTF 2017.  (10 of 207)
@@ -35,3 +35,4 @@ Mostly as part of Cyberlandsholdet (2017, 2018), dtuhax (2019-) or kalmarunionen
   * [Cyberlandsholdet 2020](2020/Cyberlandsholdet%202020/).
   * [Google CTF 2020](2020/Google%20CTF%202020/).  (47 of 625)
   * [CSAW CTF 2020](2020/CSAW%20CTF%202020/).  (12 of 1214)
+  * [TokyoWesterns CTF 6th 2020](2020/TokyoWesterns%20CTF%206th%202020/).  (143 of 648)
