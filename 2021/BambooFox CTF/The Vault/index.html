@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Vault</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+  <style>
+    .box div {
+      margin-top: 0.5rem;
+    }
+
+    .button {
+      font-family: monospace;
+    }
+
+    #password {
+      text-align: center;
+      font-family: monospace;
+      padding: 0;
+      letter-spacing: 10px;
+    }
+  </style>
+</head>
+<body>
+  <section class="section">
+    <h1 class="title has-text-centered is-1">THE VAULT</h1>
+    <section class="container">
+      <div class="columns is-centered is-multiline">
+        <div class="column is-narrow">
+          <div class="box">
+            <div>
+              <input id="password" class="input is-large" type="text" value="" max="4" disabled>
+            </div>
+            <div class="is-flex is-justify-content-space-between">
+              <button class="button is-large">1</button>
+              <button class="button is-large">2</button>
+              <button class="button is-large">3</button>
+            </div>
+            <div class="is-flex is-justify-content-space-between">
+              <button class="button is-large">4</button>
+              <button class="button is-large">5</button>
+              <button class="button is-large">6</button>
+            </div>
+            <div class="is-flex is-justify-content-space-between">
+              <button class="button is-large">7</button>
+              <button class="button is-large">8</button>
+              <button class="button is-large">9</button>
+            </div>
+            <div class="is-flex is-justify-content-space-between">
+              <button class="button is-large is-danger">C</button>
+              <button class="button is-large">0</button>
+              <button class="button is-large is-primary">✓</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+  <script src="main.js"></script>
+  <script>
+    (() => {
+      [...document.querySelectorAll('.button.is-large')].forEach((e) => {
+        e.onclick = () => {
+          switch (e.innerText) {
+            case 'C':
+              document.getElementById('password').value = '';
+              break;
+            case '✓':
+              Module.ccall('validate');
+              break;
+            default:
+              if (document.getElementById('password').value.length < 4) {
+                document.getElementById('password').value += e.innerText;
+              }
+          }
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

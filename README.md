@@ -6,6 +6,11 @@
 CTF writeups for the CTF's I've participated in.
 Mostly as part of Cyberlandsholdet (2017, 2018), dtuhax (2019-) or kalmarunionen (2020-).
 
+* 2021
+  * [BambooFox CTF](2021/BambooFox%20CTF/).  (9 of 513)
+  * [Real World CTF 3rd](2021/Real%20World%20CTF%203rd/).  (13 of 270)
+  * TetCTF 2021.  (8 of 519)
+
 * 2020
   * [TAMUctf 2020](2020/TAMUctf%202020/).  (108 of 661)
   * [Midnightsun CTF 2020](2020/Midnightsun%20CTF%202020/).  (42 of 932)
