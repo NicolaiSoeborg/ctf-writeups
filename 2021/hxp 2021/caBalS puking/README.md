@@ -19,7 +19,7 @@ Looking at [the challenge files](./caBalS%20puking-2672391a1b33417f.tar.xz) we g
 
 We found this great tool to decrypt Signal backups:
 
-https://github.com/mossblaser/signal_for_android_decryption
+<https://github.com/mossblaser/signal_for_android_decryption>
 
 We used this tool to analyse and understand the two backups.
 
