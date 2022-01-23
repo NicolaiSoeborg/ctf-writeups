@@ -6,6 +6,9 @@
 CTF writeups for the CTF's I've participated in.
 Mostly as part of Cyberlandsholdet (2017, 2018), dtuhax (2019-) or kalmarunionen (2020-).
 
+* 2022
+  * [Real World CTF 4rd](2022/Real%20World%20CTF%204th/).  (13 of 947)
+
 * 2021
   * [hxp CTF 2021](2021/hxp%202021).  (8 of 1035).
   * [Union CTF 2021](2021/Union%20CTF%202021).  (2 of 466).
