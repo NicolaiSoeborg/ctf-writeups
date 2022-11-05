@@ -5,7 +5,10 @@ $ strings Detvarderengang.dd | grep 'Flag'
 Last line is:
 > Flaget er 078 067 051 123 102 105 108 121 115 116 101 109 095 105 110 116 101 116 095 112 114 111 098 108 101 109 125
 
+- This is ASCII code 
+
 Lets decode that:
 $ python3 -c "print(''.join(chr(int(c)) for c in '078 067 051 123 102 105 108 121 115 116 101 109 095 105 110 116 101 116 095 112 114 111 098 108 101 109 125'.split(' ')))"
+
 > NC3{filystem_intet_problem}
 
