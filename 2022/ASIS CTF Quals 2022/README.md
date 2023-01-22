@@ -33,7 +33,9 @@ flask.render_template_string(post['content'],
                              date=post['date'])
 ```
 
+{% raw %}
 We control `post['content']`, but when making new blog posts the `/api/new`-endpoint checks for `{%` and `{{`.
+{% endraw %}
 
 ### Just bit flip it?
 

