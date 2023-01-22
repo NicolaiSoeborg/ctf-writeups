@@ -8,6 +8,7 @@ Mostly as part of Cyberlandsholdet (2017, 2018), dtuhax (2019-) or kalmarunionen
 
 * 2022
   * [Real World CTF 4rd](2022/Real%20World%20CTF%204th/).  (13 of 947)
+  * [ASIS CTF Quals 2022](2022/ASIS%20CTF%20Quals%202022/).  (1 of 532)
 
 * 2021
   * [hxp CTF 2021](2021/hxp%202021).  (8 of 1035).
