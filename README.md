@@ -7,6 +7,8 @@ CTF writeups for the CTF's I've participated in.
 Mostly as part of Cyberlandsholdet (2017, 2018), dtuhax (2019-) or kalmarunionen (2020-).
 
 * 2023
+  * hxp CTF 2022.  (3 of 181)
+  * [KalmarCTF 2023](2023/KalmarCTF%202023/).  (Organizing)
   * [bi0sCTF 2022](2023/bi0sCTF%202022/).  (7 of 294)
 
 * 2022
