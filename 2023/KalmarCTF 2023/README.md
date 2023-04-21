@@ -79,4 +79,16 @@ The important part of the `Caddyfile` is:
 }
 ```
 
-Solution: `curl --path-as-is -k http://php.caddy.kalmarc.tf//flag.txt -H 'Host: backups/php.caddy.kalmarc.tf'`
+Solution: `curl -k --path-as-is http://php.caddy.kalmarc.tf//flag.txt -H 'Host: backups/php.caddy.kalmarc.tf'`
+
+
+
+
+## Challenge: `Healthy Calc`
+
+[`PYLIBMC_FLAG_PICKLE`](https://github.com/lericson/pylibmc/blob/8c0f6714ea59b270782dfcc3755b5de0f3278737/src/_pylibmcmodule.h#L75)
+
+Flow is:
+ `_PylibMC_Unpickle_Bytes` calls `_PylibMC_Unpickle_Bytes` calls `PyObject_CallFunctionObjArgs(_PylibMC_pickle_loads, val, NULL)`
+
+
