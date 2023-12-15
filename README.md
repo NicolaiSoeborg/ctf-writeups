@@ -7,6 +7,7 @@ CTF writeups for the CTF's I've participated in.
 Mostly as part of Cyberlandsholdet (2017, 2018), dtuhax (2019-) or kalmarunionen (2020-).
 
 * 2023
+  * [TencentCTF](2023/0CTF/README.md).  (#2)
   * [Bornhack CTF 2023](2023/Bornhack%20CTF%202023/).  (1 of 42)
   * [Google CTF 2023](2023/Google%20CTF%202023/).  (4 of 676)
   * hxp CTF 2022.  (3 of 181)
