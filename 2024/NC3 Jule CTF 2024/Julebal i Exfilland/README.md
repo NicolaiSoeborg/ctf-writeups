@@ -1,0 +1,34 @@
+#  Julebal i Exfilland
+
+> Nissernes produktionsafdeling er blevet ramt af et phishingangreb fra de grimme gnomer. Find ud af, hvad de har fået eksfiltreret og hvordan!
+
+En fed opgave med mange lag.
+
+## Step 1: Excel Macro
+
+Excel filen indeholder en VBA macro som extractes og reverses (se `step1.py`)
+
+## Step 2: Obfuskeret Powershell
+
+Følgende powershell deobfuskeres (protip: brug `pwsh` til løbende at udpakke `"{0}{1}" -f "var1" "var2"`)
+
+```powershell
+${u`R9}=[TYPE]("system.CoNVERT") ;
+${7`53}=[TYPE]("IO.CoMpression.cOMPresSioNMoDe");
+
+(.("NeW-oBjECt") ("IO.StreaMrEADEr")( ( .("NeW-oBjECt") ("sYstEM.io.cOmprEsSIoN.deflaTesTrEAM")( [SYSTem.Io.meMorySTReAM]  (&("variaBlE") ("uR9") -valUEoNLY  )::("FrOMBaSe64stRiNg")."inVoke"("...")
+```
+
+En stor blok base64 encoded og deflated tekst blob findes i `...`
+
+## Step 3: Kryptering
+
+Ved hjælp af [CyberChef kommer det sidste lag frem](https://gchq.github.io/CyberChef/#recipe=From_Base64('A-Za-z0-9%2B/%3D',true,false)Raw_Inflate(0,0,'Adaptive',false,false)&input=alZmL1U1dEtFUCs5TS8wZmJwaThFa2FKbW1nN2s0NXZIaVJVcVRGSkNWSFRqdk1PazB0RUNhUndTYVU4L3ZlM2UwQytHYlhPM0FHNXZkMjl6MmR2ZHlYa1ExbEtxbWx5bENhMU5EbE1KYUtPaVJ5YWp1NFo4cjdNYlBVS0hqMFlqcXlRWDlWdStJMlVmOWp4ekxpRmpVZTRKVGxPVVVNdGxYRHJKWWhHY1dUajdxWUxVL3NNcG9wdDNOZ1ZvOTBJUUF0UnlHZENoR1doUU96anVJL2hhbG11T2ZLZS9Qc2NQc3FFZ0xFdXk0MVZsK0lXeWc5aEJPMEY3RUtOUGNiVkt5ZDBuVHVQRWJYdFRCbHBkS1pUeDI5R0JCYThPU1BsZjhydjM0RnBJbzNjVU5yUDNwZHV3TkhsKzhDWm90ZS9aR1ZyT1QrandDZEdaM0dnRjJ6cSt1TmdTMzdscWVONUlPVE8wTi9BSDdzVGN2Q1NickRQQ01qeEdLWEhuak9wOENmOGZyWWhnNHpNSXhiQ3VnOEl2SCtud0hqL2JqejNoOXdOZk1MYVEyb042SXlUSk5zN2MwSm5TbklBOE85SHhFUFhuOXlXa2xtTGFtNmJVK09HcC91N0JDNG9pOU5zUWNrZU85RHVMV0UrckZTcUp5Y3ZTejZzSkY4V3VqQUdlc3paaXJ3eXFjRDVEekZZQlZjaXZDeU1FbWtoN1VsT2FHcDZ5NmhmdzNzVnhzeUM2WnVrS0JWcFFiWFduRW4xdXVSRVEycTYwcWFpTThaMXBCU015VXJGOUJmQkl5dVhra2RxeEtueXNvTWM0TklIOXJxSGxUVkdCVWV1QTNxdk5HUUpObUo0WjNlSXFBdk42eHNBSnpwRmV3MDNjMnB0czZ6REpuQU41bmpMc3hsdGFXYWIyc2hYUmp1Nk9BNUNVdDdocDdtRzltZFNTdHlVcUI0bjFaT1AyZGZlbmxMRXlKdDhnZkd2S2RtRGZiMzBCMjYrRlI4WEJoM29kR0FiNGxjekpYL2hqeXpXYVd3YlVWcVJXdFNnN1RQN1hMcFZZQTFNS3l1RHVTNHp2ZDB2M2g5QTcrbmFCeTVFdWNGc1kxcWNlb2U3N3ArRTE5Yy9FV3E0czN2RDB1RVF2YlVjVXNRRUFNNmM0VDBCVVBRWTJFaUo2NE9qbk4zWUFBWkZOTjVDMWwxSDFrUmtqNTREOUtyM1pRUklrRkFBOUJiQ1F1N3JEb1FMb1ZjdFh5d3RDMDNsWEorWlIwS2hQSGZpOXZWakRNMHU0anRZdithbEJLNW9sK0x2RkJmd2NJandRQ0NzM2oxQm1FTndMVy9tTWhKQ3h1ZWhUN0JvNVBkYkZEYThTZ3U0UkhEOTltVU5rMFJlWmFESU9ML3ZSVUdxU0ZkYWkvWkZpckJwNTg2SjJFZDYzTE9wUlNFQlN1aVRTV2ZuREw3QldZaG9zSjF1cE5zSk5XejF3b2dMdm5jYzl0R0l1NXBsUDY5R2VXYlB5bkNlM0M5L25aNWk2c0F5MC9PaEFCQ3lJYnpLWG9NSFM1UWpFTm1RS0hTSlN0V3oyOGZmSDc0OEV6ck1FU0x5WGRPYWYyOWcyVDRGU1BKY3Iyd2dLM0lpRzNRcG5pSWwvd21ZYStrcWFhRTdES3N5M0FxMWMvY2dhdGUrL0NVSURkQ1pvTW0xc2k5S3FZbEpyb0VrTExUUTFlNWFySDROR2ZLbklBVnlaRTZLUnFNRzVtMXB3cWdkVVR0MDIyZFNPVmNuT3BlczZnb1hOTXQwUk1LRkNROTBabkIxZ1hWQ3JtbEErbmZzTElSMjZnbnR5MkNwaVdZbUIrUUxWdFlKVEppOGc2bU9NWEhjNC9qbHJpZmpmeUVTQ1Z4MDlTR0E2eTlKMjVFUlVlWTNxY3JvemRqMC9xQVlqeHhxYTI4VzI3bTFTaDBDZ1JPQndLYzArU2dPc1NMRXF4L1Z3T2RaL2VDQVBZM2hyZllKcG5za1pwNFQ1RG4rcUlKc3VaNzhza205TXhxc1lqZlpDTUlSa3M2aFJ6d3RKVTJxY1MzOW5PYWFlQml2SjBFazdEanZObk9uczNLSDEvT2EzVm5zNTV4RnVXTUFNY3ltRDVNS3BLbVhqTjhIbzgzQTdYYXdQYlZ4dVI4eG9Na2RkcDB3QWpDSnFnZWpHSktGSHRCUkRMbWpIN3J3MWFlV1cwVHYycDJUTVZ5NDJwN2pzek12Z0VqSjBPR1E1TGVPVUUxWHB5ZXllaDRVTGwrSExtY2kySXdRZ2kyRWJBV1BpUGtqRjU0K2pBbitNTUxzd3gxODVUQUNlSkZLNEorMHltcFpHSzFxekpCZU52TVMwNkNkNlNWMHRtc0ZaZ3ZtSGZ4MTVuYTN6NWNNZmloUXpBT0Z5TU1wMGxoQklwNnlJeHdNNFlHV3AyQzUrdmVIbzlmVE9XczNyRUhYWnFPbGtlMUViUGlZSHVJWkYvY0tLT3Q2anV2YjdJbURtVTZmZDJuZkJxS2dkU0NsbFlkNWx5YjRnU1hvOTVYZGJPUWR1cXppdGNmV3VRZTRZeStOZ1UzVUppSmVTcUFWYVZCMDFHaW1MNUs4YkJFeFZBdUVrRnhzK2RYem5HMmdQYU02REpCc3BKUEJlTUxuY000eENPRjFHT0QvSVRucmRVRTFZTDFKOWY4PQ&oeol=CRLF).
+
+Som før deobfuskeres powershell koden og vi finder en funktion `gET-KEy` (returnere `Jul3b4lI3xf1ll4nd!`) samt en funktion til at kryptere (`eNcRYpt`) og eksfiltrerer flaget.
+
+## Flag
+
+Krypteringsmetoden er RC4 og endnu engang kan [CyberChef hjælpe med at decrypte for os](https://gchq.github.io/CyberChef/#recipe=URL_Decode()From_Base64('A-Za-z0-9%2B/%3D',true,false)RC4(%7B'option':'UTF8','string':'Jul3b4lI3xf1ll4nd!'%7D,'Latin1','Latin1')&input=TTVBb1dNRnJ5QnBTbXFrSUNJSkE1T1QyNTBSdkRyNUd2a3p2M2ZJd2xPR2RPMVMlMkZpaUtiTmNLVEJ1Y3J1MiUyRkdDV0NHa1ElM0QlM0Q&oeol=CRLF).
+
+Flag: `NC3{j3g_tr0r_4t_j3g_dr@mm3r_n3j_d3t_3r_r1gt1gt_n0k!}`

