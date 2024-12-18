@@ -1,5 +1,8 @@
 from pwn import *
 
+def xor(a, b):
+    return bytes([x ^ y for x, y in zip(a, b)])
+
 r = remote('10.10.106.188', 1337)
 r.readuntil(b"> ")
 r.sendline(b"1")
