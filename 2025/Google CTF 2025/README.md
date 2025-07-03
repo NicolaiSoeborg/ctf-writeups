@@ -15,7 +15,7 @@ Challenge description:
 Another year, another JS Safe challenge!
 I'm always looking forward to this challenge during Google CTF.
 
-Challenge file can be found here: <./JSSafe/js_safe_6.html>
+Challenge file can be found here: [js_safe_6.html](./JSSafe/js_safe_6.html)
 
 ### First pass-through
 
