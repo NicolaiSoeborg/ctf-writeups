@@ -35,20 +35,20 @@ A "render loop" is made using `setInterval(renderFrame, frameInterval)` spamming
 
 Scrolling further down the file, now comes the juicy parts, the `anti(debug)` function:
 
-![](anti1.png)
+![](JSSafe/anti1.png)
 
 A bunch of "_looks like space but is another character_"-symbols are in use.
 From previous years JS Safe challenges we know that replacing these bytes with proper spaces most likely break the code.
 
 Finally the `unlock` function looks fairly simple:
 
-![](unlock.png)
+![](JSSafe/unlock.png)
 
 It expects to be given the inner part of the flag, saves it as `window.flag` and verifies the flag using `check()`.
 
 The `check`-function is being defined inside `anti(debug)`-function:
 
-![](check.png)
+![](JSSafe/check.png)
 
 ### Anti-`debugger`
 
@@ -63,7 +63,7 @@ The index is calculated ("jumping around") using the variable `window.step`.
 
 In the end of the `anti(debug)` function I skipped over this part:
 
-![](anti-inst.png)
+![](JSSafe/anti-inst.png)
 
 From my understanding it is going to _instrument_ the prototype of lots of common things (arrays, console, etc) such that when calling `.get` (i.e. property access), the `step`-value will be incremented.
 This means we can't just `console.log` the counter, as that would increase the `step` value, making the decryption rutine incorrect.
@@ -158,7 +158,7 @@ Lets go up one level and set a breakpoint on `anti(debug)`, this should work as 
 
 Stepping though `anti(debug)` we see this sneaky trick, in another thread `renderFrame()` keeps calling `multiline` on that big spinning cube block, but `anti(debug)` redefines the global `r` function to become `ROT-47`, so now the cube block decrypts as:
 
-![](rot47.png)
+![](JSSafe/rot47.png)
 
 This checks `c.outerHTML.length*2 == 386 && (new Error).stack.split('eval').length>4`
 
@@ -171,7 +171,7 @@ Lets set a breakpoint there and see what happens.
 
 We know `instrument` is called with the prototypes of a lot of common values, so I uncommented that (inside `anti(debug)`) and added just: `[].flat().concat(check, eval).forEach(instrument);`.  We can't step into the `debug(f, "...")` function, but we can replace it with a `console.log(...)` to figure out what that `f` expands to:
 
-![](debug-expanded.png)
+![](JSSafe/debug-expanded.png)
 
 This gives us the following code being run in the "debug context":
 
@@ -251,6 +251,5 @@ const double = Function.call`window.stepﾠ*= 2`;
 
 So the above code will not change `window.step` when called (but instead change `"window.stepﾠ"` variable).
 
-### X
+... TODO: Rest of the writeup
 
-...
