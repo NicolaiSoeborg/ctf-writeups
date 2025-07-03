@@ -25,20 +25,20 @@ Opening the HTML file, we see this suspect code:
 
 But it appears to be just the background cube.
 
-The "usage instruction" to unlock the safe is:
+The "usage instructions" to unlock the safe are:
  - Open the page in Chrome (the only supported browser)
  - Open Dev Tools and type:
  - anti(debug); // Industry-leading antidebug!
  - unlock("password"); // -> alert(secret)
 
-A "render loop" is made using `setInterval(renderFrame, frameInterval)` spamming the DevTools console (with `clear()` and the "usage instruction").
+A "render loop" is created using `setInterval(renderFrame, frameInterval)` which spams the DevTools console (with `clear()` and the "usage instructions").
 
 Scrolling further down the file, now comes the juicy parts, the `anti(debug)` function:
 
 ![](JSSafe/anti1.png)
 
 A bunch of "_looks like space but is another character_"-symbols are in use.
-From previous years JS Safe challenges we know that replacing these bytes with proper spaces most likely break the code.
+From previous years' JS Safe challenges we know that replacing these bytes with proper spaces will most likely break the code.
 
 Finally the `unlock` function looks fairly simple:
 
@@ -46,50 +46,51 @@ Finally the `unlock` function looks fairly simple:
 
 It expects to be given the inner part of the flag, saves it as `window.flag` and verifies the flag using `check()`.
 
-The `check`-function is being defined inside `anti(debug)`-function:
+The `check`-function is defined inside the `anti(debug)`-function:
 
 ![](JSSafe/check.png)
 
 ### Anti-`debugger`
 
-Now it gets very funky! Something which appears to be a string checks `check.toString().length` (i.e. if we modify the function code) and ends up in a `while(true) debugger;` (killing the DevTools experience).
+Now it gets very funky! Something that appears to be a string checks `check.toString().length` (i.e. if we modify the function code) and ends up in a `while(true) debugger;` (killing the DevTools experience).  But how/why would this _code-in-a-comment_ run?
+
+![](JSSafe/while-true-debugger.png)
 
 ### Flag checking
 
 The flag is verified by indexing into the variable `pool`.
 The index is calculated ("jumping around") using the variable `window.step`.
 
-### How many `step`s?
+#### How many `step`s?
 
-In the end of the `anti(debug)` function I skipped over this part:
+In the end of the `anti(debug)` function, I initially skipped over this part:
 
 ![](JSSafe/anti-inst.png)
 
 From my understanding it is going to _instrument_ the prototype of lots of common things (arrays, console, etc) such that when calling `.get` (i.e. property access), the `step`-value will be incremented.
-This means we can't just `console.log` the counter, as that would increase the `step` value, making the decryption rutine incorrect.
+This means we can't just sprinkle `console.log` calls everywhere, as that would increase the step value and break the decryption logic.
+
 
 #### Further anti-debugging in `instrument`
 
-When initially calling `anti(...)` we pass `debug` [1] to `instrument` which then checks these:
+When initially calling `anti(...)` we pass the variable `debug` [1], which ends up inside `instrument()` that checks two conditions:
 
  * `document.documentElement.outerHTML.length !== 14347`
 
 This is fairly easy to bypass, whenever I change the source file I need to update the "total document length".
 
-But the next check is much weirder:
+But the next check is even weirder:
 
  * ```debug(f, "window.c && function perf(){ const l = `" + f + "`.length; window.step += l; }() // poor man's 'performance counter`");```
 
-Normally `f.length` would be the string length of the function `f`, but the backticks looks weird.
+Normally `f.length` would be the string length of the function `f`, but why the backticks (template literals)? What does `f` expand to?
 
 But what looks even more suspicious is the comment which quotes using a single-quote and end the quote with a backtick
 (_spider senses tingling!_)
 
-[1]: A Chrome DevTools specific variable?? I could not find where `debug` is defined (very hard to grep/search).
-
 ### Modifying the code
 
-Lets start by commenting the `console.clear();` and `console.log(content);` to make debugging experience better.
+Let's start by commenting the `console.clear();` and `console.log(content);` to improve the debugging experience.
 This adds 4 extra characters, so we also need to update the `outerHTML.length` check:
 
 ```diff
@@ -105,7 +106,7 @@ This adds 4 extra characters, so we also need to update the `outerHTML.length` c
 >     debug(f, "document.documentElement.outerHTML.length !== 14351");
 ```
 
-But keeping track of outerHTML is a bit tedious, so another minimal modification is to change the outerHTML from `!== realSize` to `=== falseSize`, i.e. the logic is the same, but we don't need to update the value when modifying the rest of the file:
+But keeping track of `outerHTML` is a bit tedious, so another minimal modification is to change the `outerHTML` statement from `!== realSize` to `=== falseSize`, i.e. the logic is the same, but we don't need to update the value when modifying the rest of the file:
 
 ```diff
 285c285
@@ -116,7 +117,7 @@ But keeping track of outerHTML is a bit tedious, so another minimal modification
 
 **Note:** why not just change it to `"false"` ? We believe the `check`-function will verify `check.toString().length`, but we are a bit unsure how - so lets not modify the length of the `check`-function.
 
-_... buuut it doesn't work, I get this warning when opening the modified challenge file in my browser:_
+_... buuut it doesn't work. I get this warning when opening the modified challenge file in my browser:_
 
 > Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'sha256-P8konjutLDFcT0reFzasbgQ2OTEocAZB3vWTUbDiSjM=' 'sha256-eDP6HO9Yybh41tLimBrIRGHRqYoykeCv2OYpciXmqcY=' 'unsafe-eval'". Either the 'unsafe-inline' keyword, a hash ('sha256-C7RyoweJ1Looccbu94IGsrn5T/cazOvY7o8EuZZPQJA='), or a nonce ('nonce-...') is required to enable inline execution.
 
@@ -136,7 +137,7 @@ window.cﾠ= true; // Countﾠstepsﾠwith debug (prototype instrume
 window.success = false;
 ```
 
-So clearly `window.c` is true no matter the CSP HTML element or not? **Spoiler:** No, as I later learned, the whitespace after `window.c` (i.e. `window.c[HERE]=true;`) is not actually a whitespace, but a valid javascript identifier, meaning `window.c != window.cﾠ`!
+So clearly `window.c` is true regardless of the CSP HTML element, right? **Spoiler:** No, as I later learned, the whitespace after `window.c` (i.e. `window.c[HERE]=true;`) is not actually a whitespace, but a valid javascript identifier, meaning `window.c != window.cﾠ`!
 
 Our new modification to the file is now:
 
@@ -147,16 +148,16 @@ Our new modification to the file is now:
 > <meta http-equiv="Content-Security-Policy" id="c" content="script-src 'unsafe-inline' 'unsafe-eval'">
 ```
 
-Our changes appears to be working. The background cube is spinning, we can call `anti(debug)` and `unlock("wrong")` returns false, as expected.
+Our changes appear to be working. The background cube is spinning, we can call `anti(debug)` and `unlock("wrong")` returns false, as expected.
 
 ### Setting breakpoints
 
-A quick'n'dirty way of solving challenge, would be setting a breakpoint on `flag[0] == pool[...]` and bruteforce one flag character at a time.
+A quick'n'dirty way of solving the challenge would be setting a breakpoint on `flag[0] == pool[...]` and bruteforce one flag character at a time.
 But setting a breakpoint in DevTools doesn't trigger?!
 
 Lets go up one level and set a breakpoint on `anti(debug)`, this should work as nothing weird has been run before that call.
 
-Stepping though `anti(debug)` we see this sneaky trick, in another thread `renderFrame()` keeps calling `multiline` on that big spinning cube block, but `anti(debug)` redefines the global `r` function to become `ROT-47`, so now the cube block decrypts as:
+Stepping though `anti(debug)`, we see another sneaky trick, in `renderFrame()` the call to `multiline(...)` (logic for the big spinning cube) has redefines the global `r` function to become `ROT-47`, so now the cube block decrypts as:
 
 ![](JSSafe/rot47.png)
 
@@ -167,9 +168,9 @@ So if we change the length of the CSP or the stack trace is not correct, then `w
 #### Escaping the debugger
 
 Remember the weird 'performance counter\` comment with a backtick in `instrument` ?
-Lets set a breakpoint there and see what happens.
+Let's set a breakpoint there and see what happens.
 
-We know `instrument` is called with the prototypes of a lot of common values, so I uncommented that (inside `anti(debug)`) and added just: `[].flat().concat(check, eval).forEach(instrument);`.  We can't step into the `debug(f, "...")` function, but we can replace it with a `console.log(...)` to figure out what that `f` expands to:
+We know `instrument` is called with the prototypes of many common values, so I uncommented that (inside `anti(debug)`) and added: `[].flat().concat(check, eval).forEach(instrument);`.  We can't step into the `debug(f, "...")` function, but we can replace it with a `console.log(...)` to figure out what that `f` expands to:
 
 ![](JSSafe/debug-expanded.png)
 
@@ -214,7 +215,7 @@ window.c && function perf(){ const l = `function eval() { [native code] }`.lengt
 
 ### b'\xef\xbe\xa0' as a valid identifier
 
-Another cool trick is this, remember how the global function `r` was overriden in `check()`, i.e:
+Another cool trick; remember how the global function `r` was overriden in `check()`, i.e:
 
 ```javascript
 window.r // ROT47
@@ -232,9 +233,9 @@ window.k // ROT13 - TODO:ﾠuse thisﾠfor anﾠadditional encrypt
 }
 ```
 
-But actually that "space" (`\xef\xbe\xa0`) in front of the equal symbol (`[HERE]= function { ... }`) is a valid javascript identifier!
+But actually that "space" (`\xef\xbe\xa0`) in front of the equals symbol (`[HERE]= function { ... }`) is a valid javascript identifier!
 
-This means the following code:
+This means that the following code:
 
 ```javascript
 let pool =ﾠ`?o>\`Wn0o0U0N?05o0ps}q0|mt\`ne\`us&400_pn0ss_mph_0\`5`;
@@ -251,5 +252,16 @@ const double = Function.call`window.stepﾠ*= 2`;
 
 So the above code will not change `window.step` when called (but instead change `"window.stepﾠ"` variable).
 
-... TODO: Rest of the writeup
+### Modifying `check()` and printing flag chars
 
+Now we're comfortable modifying the `check()` code and patching out `check.toString().length !== 914` anti-debug trick.
+
+We can modify the `while (!window.success) { ... }` loop such that instead of comparing each flag char, we print the expected value and continue.
+
+![](JSSafe/solution.png)
+
+------
+
+Footnotes:
+
+[1]: A Chrome DevTools specific variable?? I couldn't find where `debug` is defined (very hard to grep/search).
