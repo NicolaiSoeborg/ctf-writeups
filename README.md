@@ -7,6 +7,7 @@ CTF writeups for the CTF's I've participated in.
 Mostly as part of Cyberlandsholdet (2017, 2018), dtuhax (2019-) or kalmarunionen (2020-).
 
 * 2025
+  * [Hack.lu CTF 2025](2025/Hack.lu%20CTF%202025/).  (#1)
   * [Google CTF 2025](2025/Google%20CTF%202025/).  (#2)
   * [ASIS CTF Quals 2025](2025/ASIS%20CTF%20Quals%202025/).  (1 of 368)
 
